@@ -1,0 +1,426 @@
+/* Reset e transições globais */
+*, *::before, *::after {
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Body e fontes */
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #e8f0fe;
+  margin: 0;
+  padding: 0;
+  color: #1e293b;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+/* Efeito de seleção */
+::selection {
+  background-color: #bae6fd;
+  color: #1974a8;
+}
+
+/* Header fixo */
+header {
+  padding: 0.7rem 2.5rem;
+  font-size: 1.1rem;
+  text-align: center;
+  background: linear-gradient(90deg, #0284c7, #0369a1);
+  color: #ffffff;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  user-select: none;
+  position: sticky;
+  top: 48px;
+  z-index: 1050;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.15);
+  letter-spacing: 1px;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  will-change: transform, opacity;
+}
+header.sticky {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+header.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+header h1 {
+  margin: 0;
+  margin-top: -5px; /* Ajuste esse valor conforme necessário */
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+header h1 {
+  position: relative;
+  top: 5%; /* Ajuste esse valor conforme necessário */
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+header h1 {
+  transition: all 0.3s ease;
+}
+
+
+/* Navegação */
+/* Estilo para o menu lateral */
+nav[aria-label="Menu principal"] {
+  position: fixed;          /* fixa na tela */
+  top: 0;                   /* no topo da página */
+  left: 0;                  /* alinhado à esquerda */
+  height: 100vh;            /* altura total da viewport */
+  width: 200px;             /* largura do menu lateral */
+  background-color: #aed8ffe3;   /* cor de fundo, ajuste se necessário */
+  padding: 1rem;            /* espaçamento interno */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* sombra lateral opcional */
+  display: flex;
+  flex-direction: column;   /* os links empilhados verticalmente */
+  gap: 10px;                /* espaçamento entre os links */
+  z-index: 1050;            /* acima de outros elementos */
+}
+
+/* Opcional: ajustar os links do menu para ficarem bonitos */
+nav[aria-label="Menu principal"] a {
+  text-decoration: none;
+  color: #190088; /* cor do texto, ajuste se desejar */
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+nav[aria-label="Menu principal"] a:hover {
+  background-color: #e0f2fe; /* cor de hover, ajuste se desejar */
+}main {
+  margin-left: 220px; /* um pouco maior que a largura do menu */
+  padding: 1rem; /* espaço interno */
+}
+/* Conteúdo principal */
+main {
+  margin-top: 1.5rem;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.5rem 3.5rem;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.1);
+}
+
+main:hover {
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.15);
+}
+
+/* Títulos */
+h2 {
+  color: #0c4a6e;
+  margin-bottom: 1.25rem;
+  border-bottom: 4px solid #38bdf8;
+  padding-bottom: 0.35rem;
+  font-weight: 800;
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+}
+
+section {
+  margin-bottom: 3.5rem;
+}
+
+/* Formulários */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: #334155;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  border: 2.5px solid #cbd5e1;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  color: #1e293b;
+  background-color: #f9fafb;
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.07);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+  font-style: italic;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+input:focus::placeholder,
+textarea:focus::placeholder {
+  opacity: 0.35;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #0284c7;
+  box-shadow: 0 0 10px #38bdf8cc;
+  background-color: #ffffff;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Botões */
+button,
+.btn-link,
+.btn-voltar {
+  transition: background-color 0.3s ease, box-shadow 0.25s ease, transform 0.15s ease;
+  outline: none;
+  user-select: none;
+}
+
+button {
+  margin-top: 1.3rem;
+  background: #0284c7;
+  color: white;
+  font-weight: 700;
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  box-shadow: 0 6px 18px rgb(2 132 199 / 0.5);
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+button:hover {
+  background: #0369a1;
+  box-shadow: 0 9px 24px rgb(3 105 161 / 0.7);
+  transform: translateY(-2px);
+}
+button:active {
+  background: #074569;
+  box-shadow: none;
+  transform: translateY(0);
+}
+button:focus-visible {
+  outline: 3px solid #bae6fd;
+  outline-offset: 2px;
+}
+
+/* Tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.3rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.08);
+}
+
+th, td {
+  padding: 1rem 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 1rem;
+  color: #334155;
+}
+
+th {
+  background-color: #bae6fd;
+  color: #0c4a6e;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+tr:nth-child(even) {
+  background-color: #f1f5f9;
+}
+
+tr:hover {
+  background-color: #dbeeff;
+}
+
+/* Alerta */
+.alert-low-stock {
+  background-color: #fee2e2 !important;
+  color: #991b1b !important;
+  font-weight: 700;
+  box-shadow: inset 0 0 5px #f8717188;
+  border-left: 5px solid #991b1b;
+}
+
+/* Mensagens */
+#mensagensRecebidas {
+  max-height: 180px;
+  overflow-y: auto;
+  background: #d9f0ff;
+  padding: 1.2rem;
+  border-radius: 14px;
+  border: 2px solid #38bdf8;
+  font-size: 1rem;
+  color: #1e293b;
+  box-shadow: inset 0 2px 6px rgb(0 0 0 / 0.1);
+}
+#mensagensRecebidas p {
+  margin: 0 0 0.8rem 0;
+  border-bottom: 1.5px solid #bae6fd;
+  padding-bottom: 0.5rem;
+}
+#mensagensRecebidas p:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* Gráficos */
+.graficos {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.grafico-container {
+  background: #e8f5ff;
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 6px 22px rgb(0 0 0 / 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 280px;
+  max-width: 420px;
+  cursor: default;
+}
+.grafico-container:hover {
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.15);
+  transform: translateY(-4px) scale(1.02);
+}
+.grafico-container h3 {
+  color: #0369a1;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 0.03em;
+}
+
+/* Links com ícones */
+.btn-link {
+  display: inline-block;
+  background-color: #0284c7;
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 14px rgb(2 132 199 / 0.45);
+}
+.btn-link::before {
+  content: '🔗 ';
+  margin-right: 0.5rem;
+}
+.btn-link:hover,
+.btn-link:focus {
+  background-color: #0369a1;
+  transform: scale(1.05);
+}
+
+.btn-voltar {
+  background-color: #6b7280;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 700;
+  width: 100%;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  box-shadow: 0 3px 12px rgb(107 114 128 / 0.7);
+}
+.btn-voltar::before {
+  content: '⬅ ';
+  margin-right: 0.4rem;
+}
+.btn-voltar:hover,
+.btn-voltar:focus {
+  background-color: #4b5563;
+  transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+  nav a {
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+  }
+  main {
+    padding: 1.8rem;
+    margin-top: 1.8rem;
+    border-radius: 14px;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+  button,
+  .btn-link,
+  .btn-voltar {
+    width: 100%;
+  }
+  .graficos {
+    flex-direction: column;
+    gap: 2.8rem;
+  }
+  .grafico-container {
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Formulários centralizados */
+.form-container {
+  max-width: 420px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+.form-container button {
+  margin-top: 1.7rem;
+  padding: 1rem 0;
+  font-size: 1.25rem;
+  border-radius: 14px;
+  width: 100%;
+}
+
+/* Alerta de login */
+#loginErro {
+  display: none;
+  color: red;
+  margin-top: 1rem;
+  text-align: center;
+}

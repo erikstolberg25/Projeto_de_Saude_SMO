@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CliniGestão - Login</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Apenas um formulário -->
+      <form class="form-container" id="loginForm">
+        <h2>CliniGestão - Login</h2>
+
+        <label for="usuario">Usuário</label>
+        <input
+          type="text"
+          id="usuario"
+          required
+          placeholder="Digite seu nome de usuário"
+        />
+
+        <label for="senha">Senha</label>
+        <input
+          type="password"
+          id="senha"
+          required
+          placeholder="Digite sua senha"
+        />
+
+        <button type="submit" style="margin-top: 1rem">Entrar</button>
+
+        <p id="loginErro">Usuário ou senha inválidos.</p>
+      </form>
+    </div>
+
+    <section class="sobre">
+      <h2>Sobre a CliniGestão</h2>
+      <p>
+        <strong>CliniGestão</strong> é um sistema digital criado para facilitar
+        a rotina das Unidades Básicas de Saúde (UBS) e melhorar o atendimento ao
+        cidadão. Ele permite que pacientes acompanhem seus agendamentos,
+        histórico de vacinas, recebam lembretes da unidade e muito mais — tudo
+        em uma única plataforma.
+      </p>
+      <p>
+        O objetivo é tornar a gestão da saúde pública mais eficiente,
+        transparente e acessível para todos, contribuindo para um cuidado mais
+        humanizado e organizado.
+      </p>
+    </section>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const usuario = document.getElementById("usuario").value.trim();
+          const senha = document.getElementById("senha").value.trim();
+
+          const usuariosValidos = {
+            admin: { senha: "admin123", tipo: "admin" },
+            usuario: { senha: "senha123", tipo: "usuario" },
+            joao: { senha: "usuario123", tipo: "usuario" },
+            maria: { senha: "usuario456", tipo: "usuario" },
+          };
+
+          if (
+            usuariosValidos[usuario] &&
+            usuariosValidos[usuario].senha === senha
+          ) {
+            const tipo = usuariosValidos[usuario].tipo;
+            sessionStorage.setItem("tipoUsuario", tipo);
+
+            if (tipo === "admin") {
+              window.location.href = "dashboard.html";
+            } else {
+              window.location.href = "painel_usuario.html";
+            }
+          } else {
+            document.getElementById("loginErro").style.display = "block";
+          }
+        });
+    </script>
+  </body>
+</html>
+

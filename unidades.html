@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unidades - CliniGestão</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #006400;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CliniGestão - Unidades de Saúde</h1>
+  </header>
+
+  <main>
+    <h2>Unidades recomendadas para você</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Endereço</th>
+          <th>Contato</th>
+          <th>Especialidade</th>
+        </tr>
+      </thead>
+      <tbody id="unidades-tbody">
+        <!-- Preenchido via JS -->
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    <p>CliniGestão © 2025</p>
+  </footer>
+
+  <script>
+  const tipoUsuario = sessionStorage.getItem('tipoUsuario') || 'geral';
+
+  const unidades = [
+    {
+      nome: 'UBS Centro',
+      endereco: 'Rua das Flores, 123',
+      contato: '(11) 1234-5678',
+      especialidade: 'Clínico Geral',
+      publico: 'geral'
+    },
+    {
+      nome: 'UBS Mãe Saudável',
+      endereco: 'Av. Esperança, 222',
+      contato: '(11) 2222-2222',
+      especialidade: 'Ginecologia',
+      publico: 'gestante'
+    },
+    {
+      nome: 'UBS Infantil Leste',
+      endereco: 'Rua Criança Feliz, 321',
+      contato: '(11) 3333-3333',
+      especialidade: 'Pediatria',
+      publico: 'pediatria'
+    },
+    {
+      nome: 'UBS Central',
+      endereco: 'Av. Brasil, 1000',
+      contato: '(11) 4444-4444',
+      especialidade: 'Diversas',
+      publico: 'geral'
+    }
+  ];
+
+  const tbody = document.getElementById('unidades-tbody');
+
+  unidades
+    .filter(unidade =>
+      unidade.publico === 'geral' || unidade.publico === tipoUsuario
+    )
+    .forEach(unidade => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${unidade.nome}</td>
+        <td>${unidade.endereco}</td>
+        <td>${unidade.contato}</td>
+        <td>${unidade.especialidade}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+</script>
+</body>
+</html>

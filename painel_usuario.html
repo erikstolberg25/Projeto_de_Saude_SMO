@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CliniGestão - Painel do Usuário</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<style>
+  
+
+/* Estilos adicionais para o formulário de agendamento */
+    .agendamento-form {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .agendamento-form h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .form-group input, 
+    .form-group select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    .btn-agendar {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    .btn-agendar:hover {
+      background-color: #2980b9;
+    }
+    
+    #confirmacaoAgendamento {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #dff0d8;
+      border-radius: 4px;
+      color: #3c763d;
+    }
+    
+    /* Estilo específico para a seção de vacinas */
+    .vacina-options {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #e8f4fc;
+      border-radius: 4px;
+    }
+</style>
+<body>
+  <header>
+    <h1>CliniGestão - Painel do Usuário</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Agendamentos</h2>
+      <div>
+        <p>Próxima consulta: <strong>10/07/2025 às 14:00</strong></p>
+        <p>Médico: <strong>Dra. Ana Paula</strong></p>
+        <p>Status: <strong>Confirmado</strong></p>
+        
+        <div>
+          <h3>Agendar Nova Consulta/Vacinação</h3>
+          <form id="formAgendamento">
+            <div>
+              <label for="tipoConsulta">Tipo de Agendamento:</label>
+              <select id="tipoConsulta" required onchange="toggleVacinaOptions()">
+                <option value="">Selecione...</option>
+                <option value="consulta_rotina">Consulta de Rotina</option>
+                <option value="exame">Exame</option>
+                <option value="vacina">Vacinação</option>
+                <option value="especialista">Especialista</option>
+              </select>
+            </div>
+            
+            <div id="vacinaOptions" style="display:none;">
+              <div>
+                <label for="tipoVacina">Tipo de Vacina:</label>
+                <select id="tipoVacina">
+                  <option value="">Selecione a vacina...</option>
+                  <option value="covid">COVID-19</option>
+                  <option value="gripe">Gripe (Influenza)</option>
+                  <option value="febre_amarela">Febre Amarela</option>
+                  <option value="hepatite_b">Hepatite B</option>
+                  <option value="hpv">HPV</option>
+                  <option value="tetano">Tétano</option>
+                </select>
+              </div>
+              <div>
+                <label for="doseVacina">Dose:</label>
+                <select id="doseVacina">
+                  <option value="1">1ª Dose</option>
+                  <option value="2">2ª Dose</option>
+                  <option value="3">3ª Dose</option>
+                  <option value="reforco">Dose de Reforço</option>
+                  <option value="anual">Dose Anual</option>
+                </select>
+              </div>
+            </div>
+            
+            <div id="medicoGroup">
+              <label for="medico">Profissional/Especialidade:</label>
+              <select id="medico" required>
+                <option value="">Selecione...</option>
+                <option value="dra_ana_paula">Dra. Ana Paula - Clínico Geral</option>
+                <option value="dr_carlos_silva">Dr. Carlos Silva - Cardiologista</option>
+                <option value="dra_maria_oliveira">Dra. Maria Oliveira - Pediatra</option>
+                <option value="enfermeiro_roberto">Enfermeiro Roberto - Vacinação</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="dataConsulta">Data:</label>
+              <input type="date" id="dataConsulta" required min="">
+            </div>
+            
+            <div>
+              <label for="horaConsulta">Horário:</label>
+              <input type="time" id="horaConsulta" required>
+            </div>
+            
+            <button type="submit">Agendar</button>
+          </form>
+          
+          <div id="confirmacaoAgendamento" style="display:none;">
+            <h3>Agendamento Confirmado!</h3>
+            <p id="detalhesAgendamento"></p>
+            <p>Você receberá uma confirmação por mensagem.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Minhas Vacinas</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Vacina</th>
+            <th>Data</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Covid-19 (1ª dose)</td>
+            <td>12/05/2024</td>
+            <td>Aplicada</td>
+          </tr>
+          <tr>
+            <td>Covid-19 (2ª dose)</td>
+            <td>12/06/2024</td>
+            <td>Pendente</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Mensagens da Unidade</h2>
+      <div id="mensagensRecebidas">
+        <p><strong>UBS Central:</strong> Sua próxima dose está agendada para 12/06/2024.</p>
+        <p><strong>UBS Central:</strong> Lembre-se de chegar 15 minutos antes do horário marcado.</p>
+      </div>
+    </section>
+
+    <!-- Nova seção de Unidades de Saúde -->
+    <section>
+      <h2>Unidades de Saúde Próximas</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Contato</th>
+            <th>Especialidade</th>
+          </tr>
+        </thead>
+        <tbody id="unidades-tbody">
+          <!-- Preenchido via JS -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Nova seção de FAQ -->
+    <section>
+      <h2>Perguntas Frequentes</h2>
+      <div id="faq-container"></div>
+    </section>
+
+    <section>
+      <h2>Sobre a CliniGestão</h2>
+      <p>
+        <strong>CliniGestão</strong> é um sistema digital criado para facilitar a rotina das Unidades Básicas de Saúde (UBS) e melhorar o atendimento ao cidadão.
+        Ele permite que pacientes acompanhem seus agendamentos, histórico de vacinas, recebam lembretes da unidade e muito mais — tudo em uma única plataforma.
+      </p>
+      <p>
+        O objetivo é tornar a gestão da saúde pública mais eficiente, transparente e acessível para todos, contribuindo para um cuidado mais humanizado e organizado.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    // Garante que o painel só é acessado por usuários tipo "usuario"
+    const tipoUsuario = sessionStorage.getItem('tipoUsuario');
+    if (tipoUsuario !== 'usuario') {
+      window.location.href = 'index.html';
+    }
+    
+    // Mostra/oculta opções de vacinação conforme seleção
+    function toggleVacinaOptions() {
+      const tipoConsulta = document.getElementById('tipoConsulta');
+      const vacinaOptions = document.getElementById('vacinaOptions');
+      
+      if (tipoConsulta.value === 'vacina') {
+        vacinaOptions.style.display = 'block';
+        // Seleciona automaticamente o enfermeiro de vacinação
+        document.getElementById('medico').value = 'enfermeiro_roberto';
+      } else {
+        vacinaOptions.style.display = 'none';
+      }
+    }
+    
+    // Configuração do formulário de agendamento
+    document.addEventListener('DOMContentLoaded', function() {
+      // Define a data mínima como amanhã
+      const dataInput = document.getElementById('dataConsulta');
+      const hoje = new Date();
+      const amanha = new Date(hoje);
+      amanha.setDate(hoje.getDate() + 1);
+      
+      const dia = String(amanha.getDate()).padStart(2, '0');
+      const mes = String(amanha.getMonth() + 1).padStart(2, '0');
+      const ano = amanha.getFullYear();
+      
+      dataInput.min = `${ano}-${mes}-${dia}`;
+      
+      // Manipula o envio do formulário
+      const formAgendamento = document.getElementById('formAgendamento');
+      formAgendamento.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Captura os valores do formulário
+        const tipoConsulta = document.getElementById('tipoConsulta').value;
+        const tipoAgendamentoText = document.getElementById('tipoConsulta').options[document.getElementById('tipoConsulta').selectedIndex].text;
+        const medico = document.getElementById('medico').value;
+        const medicoText = document.getElementById('medico').options[document.getElementById('medico').selectedIndex].text;
+        const dataConsulta = document.getElementById('dataConsulta').value;
+        const horaConsulta = document.getElementById('horaConsulta').value;
+        
+        // Formata a data para exibição
+        const dataFormatada = new Date(dataConsulta).toLocaleDateString('pt-BR');
+        
+        // Detalhes específicos para vacinação
+        let detalhesVacina = '';
+        if (tipoConsulta === 'vacina') {
+          const tipoVacina = document.getElementById('tipoVacina').value;
+          const tipoVacinaText = document.getElementById('tipoVacina').options[document.getElementById('tipoVacina').selectedIndex].text;
+          const doseVacina = document.getElementById('doseVacina').value;
+          const doseVacinaText = document.getElementById('doseVacina').options[document.getElementById('doseVacina').selectedIndex].text;
+          
+          detalhesVacina = '<br><strong>Vacina:</strong> ' + tipoVacinaText + ' (' + doseVacinaText + ')';
+        }
+        
+        // Exibe a confirmação
+        const confirmacao = document.getElementById('confirmacaoAgendamento');
+        const detalhes = document.getElementById('detalhesAgendamento');
+        
+        detalhes.innerHTML = '<strong>Tipo:</strong> ' + tipoAgendamentoText + detalhesVacina + '<br>' +
+                            '<strong>Profissional:</strong> ' + medicoText + '<br>' +
+                            '<strong>Data:</strong> ' + dataFormatada + ' às ' + horaConsulta;
+        
+        confirmacao.style.display = 'block';
+        formAgendamento.reset();
+      });
+
+      // Carrega as unidades de saúde
+      const unidades = [
+        { nome: 'UBS Centro', endereco: 'Rua das Flores, 123', contato: '(11) 1234-5678', especialidade: 'Clínico Geral' },
+        { nome: 'UBS Saúde da Família', endereco: 'Av. Principal, 456', contato: '(11) 9876-5432', especialidade: 'Diversas' },
+        { nome: 'UBS Vacinação', endereco: 'Rua da Saúde, 789', contato: '(11) 5555-5555', especialidade: 'Vacinação' }
+      ];
+
+      const tbody = document.getElementById('unidades-tbody');
+      unidades.forEach(unidade => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + unidade.nome + '</td>' +
+                       '<td>' + unidade.endereco + '</td>' +
+                       '<td>' + unidade.contato + '</td>' +
+                       '<td>' + unidade.especialidade + '</td>';
+        tbody.appendChild(tr);
+      });
+
+      // Carrega as perguntas frequentes
+      const faqs = [
+        { pergunta: 'Como agendar uma consulta?', resposta: 'Você pode agendar consultas diretamente neste painel, na seção "Agendamentos".' },
+        { pergunta: 'Preciso levar documentos para a consulta?', resposta: 'Sim, é necessário levar documento de identificação com foto e cartão SUS.' },
+        { pergunta: 'Posso tomar mais de uma vacina no mesmo dia?', resposta: 'Sim, desde que não haja contraindicação específica para alguma das vacinas.' }
+      ];
+
+      const container = document.getElementById('faq-container');
+      faqs.forEach(faq => {
+        const item = document.createElement('div');
+        item.innerHTML = '<div style="font-weight:bold;cursor:pointer;">' + faq.pergunta + '</div>' +
+                         '<div style="display:none;margin-top:5px;">' + faq.resposta + '</div>';
+        
+        item.querySelector('div').addEventListener('click', function() {
+          const resposta = this.nextElementSibling;
+          resposta.style.display = resposta.style.display === 'none' ? 'block' : 'none';
+        });
+        
+        container.appendChild(item);
+      });
+    });
+    window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (!header) return;
+
+    if (window.scrollY > 50) {
+      header.classList.add('hidden');
+    } else {
+      header.classList.remove('hidden');
+    }
+  });
+  </script>
+</body>
+</html>

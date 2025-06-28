@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CliniGestão - Agendamentos</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header>
+  <h1>CliniGestão - Agendamentos</h1>
+</header>
+<main>
+  <h2>Consultas Agendadas</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Paciente</th>
+        <th>Especialidade</th>
+        <th>Data</th>
+        <th>Horário</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Carla Mendes</td>
+        <td>Clínico Geral</td>
+        <td>28/06/2025</td>
+        <td>09:00</td>
+        <td>Confirmado</td>
+      </tr>
+      <tr>
+        <td>Fernando Lima</td>
+        <td>Pediatria</td>
+        <td>28/06/2025</td>
+        <td>10:30</td>
+        <td>Pendente</td>
+      </tr>
+      <tr>
+        <td>Beatriz Rocha</td>
+        <td>Ginecologia</td>
+        <td>28/06/2025</td>
+        <td>13:00</td>
+        <td>Cancelado</td>
+      </tr>
+    </tbody>
+  </table>
+  <section>
+    <h2>Novo Agendamento</h2>
+    <form>
+      <label for="nome">Nome do Paciente:</label>
+      <input type="text" id="nome" name="nome" required />
+      <label for="especialidade">Especialidade:</label>
+      <select id="especialidade" name="especialidade">
+        <option>Clínico Geral</option>
+        <option>Pediatria</option>
+        <option>Ginecologia</option>
+        <option>Ortopedia</option>
+      </select>
+      <label for="data">Data:</label>
+      <input type="date" id="data" name="data" required />
+      <label for="hora">Horário:</label>
+      <input type="time" id="hora" name="hora" required />
+      <button type="submit">Agendar</button>
+            <button type="button" onclick="window.location.href='dashboard.html'">Voltar</button>
+    </form>
+  </section>
+</main>
+<script> 
+      window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (!header) return;
+
+    if (window.scrollY > 50) {
+      header.classList.add('hidden');
+    } else {
+      header.classList.remove('hidden');
+    }
+  });
+</script>
+</body>
+</html>

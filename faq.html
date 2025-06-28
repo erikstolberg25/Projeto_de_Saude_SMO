@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ - CliniGestão</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .faq-item {
+      background: #fff;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    .faq-question {
+      font-weight: bold;
+    }
+
+    .faq-answer {
+      display: none;
+      margin-top: 0.5rem;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CliniGestão - Perguntas Frequentes</h1>
+  </header>
+
+  <main>
+    <h2>Perguntas Frequentes Personalizadas</h2>
+    <div id="faq-container"></div>
+  </main>
+
+  <footer>
+    <p>CliniGestão © 2025</p>
+  </footer>
+
+  <script>
+  const tipoUsuario = sessionStorage.getItem('tipoUsuario') || 'geral';
+
+  const faqs = [
+    {
+      publico: 'geral',
+      pergunta: 'Como agendar uma consulta?',
+      resposta: 'Você pode agendar pelo site ou na UBS mais próxima.'
+    },
+    {
+      publico: 'gestante',
+      pergunta: 'Gestantes têm prioridade no atendimento?',
+      resposta: 'Sim, gestantes têm atendimento prioritário no SUS.'
+    },
+    {
+      publico: 'pediatria',
+      pergunta: 'Preciso levar a caderneta de vacinação?',
+      resposta: 'Sim, é essencial para o atendimento pediátrico.'
+    },
+    {
+      publico: 'admin',
+      pergunta: 'Como acessar o painel de administração?',
+      resposta: 'O acesso é feito através da página dashboard com permissões elevadas.'
+    }
+  ];
+
+  const container = document.getElementById('faq-container');
+
+  faqs.forEach(faq => {
+    if (faq.publico === 'geral' || faq.publico === tipoUsuario) {
+      const item = document.createElement('div');
+      item.className = 'faq-item';
+      item.innerHTML = `
+        <div class="faq-question">${faq.pergunta}</div>
+        <div class="faq-answer" style="display:none;">${faq.resposta}</div>
+      `;
+      item.querySelector('.faq-question').addEventListener('click', () => {
+        const resposta = item.querySelector('.faq-answer');
+        resposta.style.display = resposta.style.display === 'none' ? 'block' : 'none';
+      });
+      container.appendChild(item);
+    }
+  });
+</script>
+</body>
+</html>
