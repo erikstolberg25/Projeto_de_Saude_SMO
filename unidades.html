@@ -30,6 +30,8 @@
 </head>
 <body>
   <header>
+    <img src="image.png" alt="Imagem pequena" style="width: 50px; height: auto;" />
+    <span class="header-title">CliniGestão - sistema de saude </span>
     <h1>CliniGestão - Unidades de Saúde</h1>
   </header>
 
@@ -105,22 +107,9 @@
       tbody.appendChild(tr);
     });
 </script>
-</body>
-<body>
-    <div class="container">
-      <div class="btn-group">
-        <button id="rodarTestesUnitBtn">Rodar Testes Unitários</button>
-        <button id="rodarTestesComponentBtn">Rodar Testes Component</button>
-      </div>
-
-      <p>Resultado: <span id="resultado">0</span></p>
-      <div id="testes-resultados"></div>
-
-      <button type="button" id="Voltar" onclick="window.location.href='dashboard.html'">Voltar</button>
-    </div>
-
-    <script src="js/login.js"></script>
+  <script src="js/login.js"></script>
     <script src="js/rodarTestes.js"></script>
-    <script src="tests/unitarios/unitarios.unidades.test.js"></script>
-  </body>
+    <script src="tests/unitario.test.js"></script>
+    <script src="tests/component.test.js"></script>
+</body>
 </html>

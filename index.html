@@ -5,10 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CliniGestão - Login</title>
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+      header {
+        display: flex;
+        align-items: center;
+        background-color: #007b3a;
+        padding: 12px 24px;
+        color: white;
+      }
+
+      header img {
+        height: 50px;
+        margin-right: 16px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      }
+    </style>
   </head>
   <body>
+    <header>
+      <img src="image.png" 
+     alt="SUS Santa Catarina" class="sus-logo" />
+      <h1>CliniGestão - Saúde Pública SC</h1>
+    </header>
     <div class="container">
-      <!-- Apenas um formulário -->
       <form class="form-container" id="loginForm">
         <h2>CliniGestão - Login</h2>
 
@@ -30,7 +53,7 @@
 
         <button type="submit" id="Entrar" style="margin-top: 1rem">Entrar</button>
 
-        <p id="loginErro">Usuário ou senha inválidos.</p>
+        <p id="loginErro" style="display: none; color: red;">Usuário ou senha inválidos.</p>
       </form>
     </div>
 
@@ -83,12 +106,9 @@
           }
         });
     </script>
-  </body>
-   <body>
-    
-
     <script src="js/login.js"></script>
     <script src="js/rodarTestes.js"></script>
-    <script src="tests/unitarios/unitario.index.test.js"></script>
+    <script src="tests/unitario.test.js"></script>
+    <script src="tests/component.test.js"></script>
+  </body>
 </html>
-
