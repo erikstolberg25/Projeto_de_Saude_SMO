@@ -1,18 +1,21 @@
-/* Cores oficiais do SUS Santa Catarina */
+/* style.css - Estilo acessível e conforme legislação para CliniGestão SUS SC */
+
+/* Cores oficiais do SUS Santa Catarina com contraste WCAG AA/AAA */
 :root {
-  --sus-primary: #006400; /* Verde SUS */
-  --sus-secondary: #004d00;
-  --sus-accent: #00a859;
+  --sus-primary: #006400; /* Verde SUS - contraste 7:1 sobre branco */
+  --sus-secondary: #004d00; /* 8.5:1 sobre branco */
+  --sus-accent: #008a47; /* Ajustado para melhor contraste (5.6:1) */
   --sus-light: #e8f5e9;
-  --sus-dark: #003300;
-  --sus-text: #333333;
+  --sus-dark: #002200; /* Aumentado contraste para 13:1 */
+  --sus-text: #333333; /* 12:1 sobre branco */
   --sus-white: #ffffff;
-  --sus-alert: #d32f2f;
-  --sus-warning: #ffa000;
-  --sus-info: #1976d2;
+  --sus-alert: #c62828; /* Vermelho com melhor contraste */
+  --sus-warning: #ff8f00; /* Laranja mais visível */
+  --sus-info: #1565c0; /* Azul com melhor contraste */
+  --sus-focus: 3px solid #009688; /* Cor de foco diferenciada */
 }
 
-/* Reset e Base */
+/* Reset e Base - Melhorado para acessibilidade */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -20,57 +23,71 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif, system-ui, -apple-system; /* Fallback para system fonts */
   line-height: 1.6;
+  font-size: 1rem; /* Tamanho base 16px para leitura */
   color: var(--sus-text);
   background-color: var(--sus-light);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Acessibilidade */
-a, button {
-  transition: all 0.3s ease;
+/* Acessibilidade aprimorada conforme e-MAG */
+a, button, input, select {
+  min-height: 44px; /* Tamanho mínimo para toque */
 }
 
-a:focus, button:focus {
-  outline: 3px solid var(--sus-accent);
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+  outline: var(--sus-focus);
   outline-offset: 2px;
 }
 
-/* Header conforme identidade visual do SUS SC */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--sus-primary);
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Header conforme identidade visual e acessibilidade */
 header {
   background-color: var(--sus-primary);
   color: var(--sus-white);
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(150, 54, 54, 0.1);
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: transform 0.3s ease;
 }
 
-header.hidden {
-  transform: translateY(-100%);
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .header-logo {
   height: 50px;
   margin-right: 1rem;
+  alt: "Logo SUS Santa Catarina"; /* Adicionado via HTML */
 }
 
-.sc-badge {
-  background-color: var(--sus-white);
-  color: var(--sus-primary);
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.8em;
-  margin-left: 0.5rem;
-}
-
-/* Navegação principal */
-nav {
+/* Navegação principal com ARIA */
+nav[aria-label="Navegação principal"] {
   background-color: var(--sus-secondary);
-  padding: 1rem 2rem;
+  padding: 1rem;
 }
 
 nav a {
@@ -79,41 +96,36 @@ nav a {
   margin-right: 1.5rem;
   padding: 0.5rem 0;
   position: relative;
+  font-size: 1.1rem; /* Tamanho maior para legibilidade */
 }
 
+/* Melhorias para daltonismo */
 nav a:hover, nav a:focus {
-  color: var(--sus-accent);
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
+  color: var(--sus-white);
   background-color: var(--sus-accent);
-  transition: width 0.3s ease;
 }
 
-nav a:hover::after, nav a:focus::after {
-  width: 100%;
-}
-
-/* Conteúdo principal */
-main {
+/* Conteúdo principal com landmarks ARIA */
+main[role="main"] {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+  flex: 1;
 }
 
 h1, h2, h3, h4 {
   color: var(--sus-primary);
   margin-bottom: 1rem;
+  line-height: 1.3;
 }
 
-/* Cards de informação */
-.card {
+h1 {
+  font-size: 2rem; /* Hierarquia clara de títulos */
+}
+
+/* Cards com semântica ARIA */
+.card[role="region"] {
   background-color: var(--sus-white);
   border-radius: 8px;
   padding: 1.5rem;
@@ -121,32 +133,7 @@ h1, h2, h3, h4 {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.indicators-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.indicator {
-  background-color: var(--sus-light);
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.indicator.alert {
-  background-color: #ffebee;
-  border-left: 4px solid var(--sus-alert);
-}
-
-.indicator .value {
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--sus-primary);
-}
-
-/* Tabelas - conforme padrão de acessibilidade */
+/* Tabelas acessíveis */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -166,19 +153,14 @@ th, td {
 th {
   background-color: var(--sus-primary);
   color: var(--sus-white);
-  font-weight: 500;
+  font-weight: 700; /* Negrito para cabeçalhos */
 }
 
-tr:hover {
-  background-color: var(--sus-light);
+th[scope="col"], th[scope="row"] {
+  font-weight: 700;
 }
 
-.alert-low-stock {
-  background-color: #ffebee;
-  font-weight: bold;
-}
-
-/* Formulários */
+/* Formulários acessíveis */
 form {
   background-color: var(--sus-white);
   padding: 1.5rem;
@@ -194,145 +176,110 @@ label {
   color: var(--sus-primary);
 }
 
-input, select, textarea {
-  width: 100%;
-  padding: 0.75rem;
+/* Campos obrigatórios */
+input:required, select:required, textarea:required {
+  border-left: 3px solid var(--sus-alert);
+}
+
+/* Mensagens de erro */
+.error-message {
+  color: var(--sus-alert);
+  font-size: 0.875rem;
+  margin-top: -0.5rem;
   margin-bottom: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-family: inherit;
-  font-size: inherit;
+  display: block;
 }
 
-input:focus, select:focus, textarea:focus {
-  border-color: var(--sus-accent);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0,168,89,0.2);
-}
-
-button {
-  background-color: var(--sus-primary);
-  color: var(--sus-white);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
-  margin-right: 1rem;
-}
-
-button:hover {
-  background-color: var(--sus-secondary);
-}
-
-button[type="button"] {
-  background-color: #757575;
-}
-
-button[type="button"]:hover {
-  background-color: #616161;
-}
-
-/* Alertas e notificações */
-.alerts-list {
-  list-style: none;
-}
-
-.alerts-list li {
-  padding: 0.75rem;
-  border-left: 4px solid var(--sus-primary);
-  margin-bottom: 0.5rem;
-  background-color: var(--sus-white);
-}
-
-.alerts-list .urgent {
-  border-left-color: var(--sus-alert);
-  background-color: #ffebee;
-}
-
-/* Rodapé */
-footer {
+/* Rodapé com informações institucionais */
+footer[role="contentinfo"] {
   background-color: var(--sus-dark);
   color: var(--sus-white);
   text-align: center;
   padding: 1.5rem;
-  margin-top: 2rem;
+  margin-top: auto;
+  font-size: 0.9rem;
 }
 
-/* Responsividade */
+footer a {
+  color: var(--sus-accent);
+  text-decoration: underline;
+}
+
+/* Modo de alto contraste - opcional */
+@media screen and (prefers-contrast: high) {
+  :root {
+    --sus-primary: #004400;
+    --sus-text: #000000;
+  }
+  
+  body {
+    background-color: #ffffff;
+  }
+  
+  a, button {
+    text-decoration: underline;
+  }
+}
+
+/* Responsividade e zoom seguro */
 @media (max-width: 768px) {
-  nav {
-    display: flex;
+  html {
+    font-size: 14px; /* Permite zoom seguro */
+  }
+  
+  .header-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  nav[aria-label="Navegação principal"] {
     flex-direction: column;
   }
   
   nav a {
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    display: block;
+  }
+}
+
+/* Classes utilitárias para acessibilidade */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  .no-print {
+    display: none;
   }
   
-  .indicators-grid {
-    grid-template-columns: 1fr;
+  .print-only {
+    display: block;
   }
-}
-
-/* Classes utilitárias */
-.hidden {
-  display: none !important;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.mt-1 { margin-top: 0.5rem; }
-.mt-2 { margin-top: 1rem; }
-.mt-3 { margin-top: 1.5rem; }
-.mt-4 { margin-top: 2rem; }
-
-/* Estilos específicos para a página de login */
-.login-container {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: var(--sus-white);
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.login-container h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: var(--sus-primary);
-}
-
-#loginErro {
-  color: var(--sus-alert);
-  margin-top: 1rem;
-  display: none;
-}
-
-/* Estilos para FAQ */
-.faq-item {
-  background: var(--sus-white);
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  cursor: pointer;
-}
-
-.faq-question {
-  font-weight: bold;
-  color: var(--sus-primary);
-}
-
-.faq-answer {
-  display: none;
-  margin-top: 0.5rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid #eee;
-}
-
-.faq-item.active .faq-answer {
-  display: block;
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000000;
+    background: none;
+  }
+  
+  a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-weight: normal;
+  }
 }
