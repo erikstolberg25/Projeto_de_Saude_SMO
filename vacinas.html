@@ -1,76 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CliniGestão - Vacinas</title>
-<link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CliniGestão - Vacinas</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
-<header>
-   <div class="head container"></div>
-     <img src="img-logo-sus.png " alt="logo do SUS" class="header-logo"/>
+  <header>
+    <div class="head container"></div>
+   <img src="image.png" alt="logo do SUS" class="header-logo" />
     <span class="header-title">CliniGestão - Paniel da Unidade </span>
     <h1></h1>CliniGestão - Vacinas
     </div>
   </header>
-<main>
-  <h2>Registro de Vacinas</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Paciente</th>
-        <th>Vacina</th>
-        <th>Data</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Maria Oliveira</td>
-        <td>Covid-19</td>
-        <td>15/06/2025</td>
-        <td>1ª dose</td>
-      </tr>
-      <tr>
-        <td>João Silva</td>
-        <td>Hepatite B</td>
-        <td>12/06/2025</td>
-        <td>Completa</td>
-      </tr>
-      <tr>
-        <td>Lucas Pereira</td>
-        <td>Influenza</td>
-        <td>10/06/2025</td>
-        <td>1ª dose</td>
-      </tr>
-    </tbody>
-  </table>
-  <section>
-    <h2>Aplicar nova vacina</h2>
-    <form>
-      <label for="paciente">Paciente:</label>
-      <input type="text" id="paciente" name="paciente" />
-      <label for="vacina">Vacina:</label>
-      <input type="text" id="vacina" name="vacina" />
-      <label for="data">Data:</label>
-      <input type="date" id="data" name="data" />
-      <label for="status">Status:</label>
-      <select id="status" name="status">
-        <option>1ª dose</option>
-        <option>2ª dose</option>
-        <option>Reforço</option>
-        <option>Completa</option>
-      </select>
-      <button type="submit">Registrar</button>
-       <button type="button" onclick="window.location.href='dashboard.html'">Voltar</button>
-    </form>
-  </section>
-</main>
-
+  <main>
+    <h2>Registro de Vacinas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Paciente</th>
+          <th>Vacina</th>
+          <th>Data</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Maria Oliveira</td>
+          <td>Covid-19</td>
+          <td>15/06/2025</td>
+          <td>1ª dose</td>
+        </tr>
+        <tr>
+          <td>João Silva</td>
+          <td>Hepatite B</td>
+          <td>12/06/2025</td>
+          <td>Completa</td>
+        </tr>
+        <tr>
+          <td>Lucas Pereira</td>
+          <td>Influenza</td>
+          <td>10/06/2025</td>
+          <td>1ª dose</td>
+        </tr>
+      </tbody>
+    </table>
+    <section>
+      <h2>Aplicar nova vacina</h2>
+      <form>
+        <label for="paciente">Paciente:</label>
+        <input type="text" id="paciente" name="paciente" />
+        <label for="vacina">Vacina:</label>
+        <input type="text" id="vacina" name="vacina" />
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" />
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+          <option>1ª dose</option>
+          <option>2ª dose</option>
+          <option>Reforço</option>
+          <option>Completa</option>
+        </select>
+        <button type="submit">Registrar</button>
+        <button type="button" onclick="window.location.href='dashboard.html'">Voltar</button>
+      </form>
+    </section>
+  </main>
   <script src="js/login.js"></script>
-    <script src="js/rodarTestes.js"></script>
-    <script src="tests/unitario.test.js"></script>
-    <script src="tests/component.test.js"></script>
+  <script src="js/rodarTestes.js"></script>
+  <script src="tests/unitario.test.js"></script>
+  <script src="tests/component.test.js"></script>
 </body>
+
 </html>
