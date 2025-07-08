@@ -1,68 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CliniGestão - Pacientes</title>
-<link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-<header>
-  <h1>CliniGestão - Pacientes</h1>
-</header>
-<main>
-  <h2>Pacientes Cadastrados</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Data de Nascimento</th>
-        <th>Telefone</th>
-        <th>Endereço</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Ana Paula</td>
-        <td>15/04/1987</td>
-        <td>(11) 99988-7766</td>
-        <td>Rua das Flores, 123</td>
-      </tr>
-      <tr>
-        <td>Lucas Santos</td>
-        <td>10/11/1990</td>
-        <td>(21) 98877-6655</td>
-        <td>Avenida Central, 456</td>
-      </tr>
-    </tbody>
-  </table>
-  <section>
-    <h2>Adicionar Novo Paciente</h2>
-    <form>
-      <label for="nome">Nome Completo:</label>
-      <input type="text" id="nome" name="nome" required />
-      <label for="nascimento">Data de Nascimento:</label>
-      <input type="date" id="nascimento" name="nascimento" required />
-      <label for="telefone">Telefone:</label>
-      <input type="tel" id="telefone" name="telefone" />
-      <label for="endereco">Endereço:</label>
-      <textarea id="endereco" name="endereco"></textarea>
-      <button type="submit" id="Cadastrar">Cadastrar</button>
-     <button type="button" id="Voltar" onclick="window.location.href='dashboard.html'">Voltar</button>
-    </form>
-  </section>
-</main>
-<script>
-      window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if (!header) return;
 
-    if (window.scrollY > 50) {
-      header.classList.add('hidden');
-    } else {
-      header.classList.remove('hidden');
-    }
-  });
-</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CliniGestão - Pacientes</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="head container"></div>
+    <span class="header-title">CliniGestão - Paniel da Unidade </span>
+    <h1></h1>CliniGestão - Pacientes
+    </div>
+  </header>
+  <main>
+    <h2>Pacientes Cadastrados</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Data de Nascimento</th>
+          <th>Telefone</th>
+          <th>Endereço</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ana Paula</td>
+          <td>15/04/1987</td>
+          <td>(11) 99988-7766</td>
+          <td>Rua das Flores, 123</td>
+        </tr>
+        <tr>
+          <td>Lucas Santos</td>
+          <td>10/11/1990</td>
+          <td>(21) 98877-6655</td>
+          <td>Avenida Central, 456</td>
+        </tr>
+      </tbody>
+    </table>
+    <section>
+      <h2>Adicionar Novo Paciente</h2>
+      <form>
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" required />
+        <label for="nascimento">Data de Nascimento:</label>
+        <input type="date" id="nascimento" name="nascimento" required />
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" />
+        <label for="endereco">Endereço:</label>
+        <textarea id="endereco" name="endereco"></textarea>
+        <button type="submit" id="Cadastrar">Cadastrar</button>
+        <button type="button" id="Voltar" onclick="window.location.href='dashboard.html'">Voltar</button>
+      </form>
+    </section>
+  </main>
+  <script src="js/pacientes.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/rodarTestes.js"></script>
+  <script src="tests/unitario.test.js"></script>
+  <script src="tests/component.test.js"></script>
 </body>
+
 </html>
