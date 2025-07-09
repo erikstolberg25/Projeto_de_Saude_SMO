@@ -410,3 +410,19 @@ footer {
 .mt-2 { margin-top: 1rem; }
 .mt-3 { margin-top: 1.5rem; }
 .mt-4 { margin-top: 2rem; }
+.link-recuperar-senha {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #009900; /* Verde escuro SUS */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+
+  .link-recuperar-senha:hover {
+    background-color: #004d00; /* Tom mais escuro no hover */
+  }
